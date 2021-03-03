@@ -1,7 +1,7 @@
 import { Breadcrumb, Space, Button, List } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import CardList from "./CardList";
-import { React } from 'react';
+import React from 'react';
 
 const LIST_ONE_DATA = [
     {
