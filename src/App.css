@@ -1,9 +1,28 @@
 @import '~antd/dist/antd.css';
 
-/* .App {
-  text-align: center;
+.layout {
+  background-color: transparent;
 }
 
+.ant-list {
+  background-color: #ebecf0;
+  border-color: lightgrey;
+  border-radius: 4px;
+  width: 272px;
+}
+
+.ant-list-item {
+  border-color: lightgrey;
+}
+
+body {
+  background-color: rgb(241, 248, 253);
+}
+
+.ant-btn {
+  text-align: left;
+}
+/*
 .App-logo {
   height: 40vmin;
   pointer-events: none;
