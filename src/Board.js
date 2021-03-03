@@ -58,14 +58,17 @@ class Board extends React.Component {
         }
     }
     render() {
-        let AllLists = this.state.listOrder.map(
+        // make an array of all cards so you can filter it by list later
+        let filterableCards = Object.values(this.state.cards);
+        
+        let allLists = this.state.listOrder.map(
             listID => {
                 let list = this.state.lists[listID];
-                let cards = Object.values(this.state.cards).filter(
+                let cardsForThisList = filterableCards.filter(
                     card => (card.list === listID)
                 );
                 return (
-                    <CardList title={list.title} data={cards} />
+                    <CardList title={list.title} data={cardsForThisList} />
                 )
             }
         )
@@ -77,7 +80,7 @@ class Board extends React.Component {
                     <Breadcrumb.Item>App</Breadcrumb.Item>
                 </Breadcrumb>
                 <Space align="start">
-                    {AllLists}
+                    {allLists}
                     <Button style={{ width: "240px", marginLeft: 8 }} icon={<PlusOutlined />}>Add another list</Button>
                 </Space>
             </>
