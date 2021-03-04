@@ -2,6 +2,7 @@ import { Breadcrumb, Space, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import CardList from "./CardList";
 import React from 'react';
+import {v4 as makeUUID} from "uuid";
 
 const DEFAULT_CARDS = {
     "asdf": {
@@ -57,18 +58,40 @@ class Board extends React.Component {
             listOrder: DEFAULT_LIST_ORDER,
         }
     }
+    addCard = (title, listID) => {
+        let uuid = makeUUID();
+        let card = {
+            uuid,
+            title,
+            list: listID,
+            archived: false,
+        }
+        let newCards = {...this.state.cards, [uuid]: card };
+        this.setState({cards: newCards});
+    }
+
+    archiveCard = (cardID) => {
+        // copy the object so state never gets mutated directly
+        let card = Object.assign( {}, this.state.cards[cardID]);
+        card.archived = true;
+        
+        let newCards = {...this.state.cards, [cardID]: card };
+        console.log(newCards);
+        this.setState({cards: newCards});
+    }
+
     render() {
         // make an array of all cards so you can filter it by list later
         let filterableCards = Object.values(this.state.cards);
-        
+
         let allLists = this.state.listOrder.map(
             listID => {
                 let list = this.state.lists[listID];
                 let cardsForThisList = filterableCards.filter(
-                    card => (card.list === listID)
+                    card => (card.list === listID && card.archived === false)
                 );
                 return (
-                    <CardList title={list.title} data={cardsForThisList} />
+                    <CardList title={list.title} data={cardsForThisList} listID={listID} addCard={this.addCard} archiveCard={this.archiveCard} />
                 )
             }
         )
@@ -81,7 +104,7 @@ class Board extends React.Component {
                 </Breadcrumb>
                 <Space align="start">
                     {allLists}
-                    <Button style={{ width: "240px", marginLeft: 8 }} icon={<PlusOutlined />}>Add another list</Button>
+                    <Button className="card" style={{ width: 240, marginLeft: 8 }} icon={<PlusOutlined />}>Add another list</Button>
                 </Space>
             </>
         )
