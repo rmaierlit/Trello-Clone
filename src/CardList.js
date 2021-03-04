@@ -1,6 +1,6 @@
 import { List, Button, Dropdown, Menu } from "antd";
 
-import { PlusOutlined, EditOutlined } from '@ant-design/icons';
+import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 
 import AddCardButton from "./AddCardButton";
 
@@ -14,11 +14,26 @@ let menu = (handleClick) => {
     );
 }
 
-function CardList({ title, data, listID, addCard, archiveCard }) {
+function CardList({ title, data, listID, addCard, archiveCard, archiveList }) {
+    let renderItem = item => (
+        <List.Item>
+            <Button className="card" block >
+                {item.title}
+            </Button>
+            <Dropdown overlay={menu(handleClick(item.uuid))}>
+                <Button icon={<EditOutlined />} />
+            </Dropdown>
+        </List.Item>
+    ) 
+
     if (data.length === 0) {
         // default antd behavior is to display "No Data" when the data is an empty array
-        // override that to only display the header and footer
-        return (<NoDataList title={title} />);
+        // override that to display the Add Card button
+        renderItem = () => (
+            <List.Item>
+                <AddCardButton message="Add another card" listID={listID} addCard={addCard} />
+            </List.Item>
+        )
     }
 
     let handleClick = uuid => e => {
@@ -30,39 +45,18 @@ function CardList({ title, data, listID, addCard, archiveCard }) {
         <List
             size="small"
             bordered
-            header={<div style={{fontWeight: 600, marginLeft: 8}}>{title}</div>}
-            footer={<AddCardButton message="Add another card" listID={listID} addCard={addCard} />}
+            header={
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <span style={{ fontWeight: 600, marginLeft: 8 }}>{title}</span>
+                    <Button size="small" style={{ marginRight: 0 }} icon={<CloseOutlined />} onClick={()=> {archiveList(listID)}}/>
+                </div>
+            }
+            footer={data.length? (<AddCardButton message="Add another card" listID={listID} addCard={addCard} />) : null}
             itemLayout="horizontal"
-            dataSource={data}
-            renderItem={item => (
-                <List.Item>
-                    <Button className="card" block >
-                        {item.title}
-                    </Button>
-                    <Dropdown overlay={menu(handleClick(item.uuid))}>
-                        <Button icon={<EditOutlined />} />
-                    </Dropdown>
-                </List.Item>
-            )}
+            dataSource={data.length? data : [{}]}
+            renderItem={renderItem}
         />
     );
-}
-
-function NoDataList({ title }) {
-    return (
-        <List
-            size="small"
-            bordered
-            header={<div style={{fontWeight: 600, marginLeft: 8}}>{title}</div>}
-            itemLayout="horizontal"
-            dataSource={[{ title: "no data" }]}
-            renderItem={item => (
-                <List.Item>
-                    <Button className="card" block icon={<PlusOutlined />} >Add a card</Button>
-                </List.Item>
-            )}
-        />
-    )
 }
 
 export default CardList;

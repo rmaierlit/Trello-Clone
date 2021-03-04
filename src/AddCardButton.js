@@ -10,7 +10,7 @@ class AddCardButton extends React.Component {
 
         this.state = {
             open: false,
-            cardTitle: "",
+            title: "",
         }
     }
 
@@ -19,7 +19,7 @@ class AddCardButton extends React.Component {
     }
 
     close = () => {
-        this.setState({open: false});
+        this.setState({open: false, title: ""});
     }
 
     addCard = () => {

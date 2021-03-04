@@ -1,4 +1,4 @@
-import { Button, Input, Space } from 'antd';
+import { Button, Input, Space, Card } from 'antd';
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons';
 import React from 'react';
 
@@ -10,16 +10,16 @@ class AddListButton extends React.Component {
 
         this.state = {
             open: false,
-            ListTitle: "",
+            title: "",
         }
     }
 
     open = () => {
-        this.setState({open: true});
+        this.setState({ open: true });
     }
 
     close = () => {
-        this.setState({open: false});
+        this.setState({ open: false, title: "" });
     }
 
     addList = () => {
@@ -33,21 +33,23 @@ class AddListButton extends React.Component {
 
     handleTextInput = (event) => {
         let title = event.target.value;
-        this.setState({title});
+        this.setState({ title });
     }
 
 
     render() {
         let { title } = this.state;
-        if (this.state.open){
+        if (this.state.open) {
             return (
-                <Space direction="vertical" style={{width: "100%", backgroundColor: "#ebecf0"}}>
-                    <TextArea style={{display: "block", width: "100%"}} placeholder="Enter list title..." value={title} onChange={this.handleTextInput}/>
-                    <Space>
-                        <Button type="primary" onClick={this.addList}>Add List</Button>
-                        <Button shape="circle" icon={<CloseOutlined />} onClick={this.close}/>
+                <Card size="small">
+                    <Space direction="vertical" style={{ width: "100%" }}>
+                        <TextArea style={{ display: "block", width: "100%" }} placeholder="Enter list title..." value={title} onChange={this.handleTextInput} />
+                        <Space>
+                            <Button type="primary" onClick={this.addList}>Add List</Button>
+                            <Button shape="circle" icon={<CloseOutlined />} onClick={this.close} />
+                        </Space>
                     </Space>
-                </Space>
+                </Card>
             )
         }
 
