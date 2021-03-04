@@ -4,13 +4,13 @@ import React from 'react';
 
 const { TextArea } = Input;
 
-class AddCardButton extends React.Component {
+class AddListButton extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             open: false,
-            cardTitle: "",
+            ListTitle: "",
         }
     }
 
@@ -22,11 +22,10 @@ class AddCardButton extends React.Component {
         this.setState({open: false});
     }
 
-    addCard = () => {
-        let listID = this.props.listID;
+    addList = () => {
         let title = this.state.title;
 
-        this.props.addCard(title, listID);
+        this.props.addList(title);
         // addCard prop is from Board.js
 
         this.close();
@@ -39,14 +38,13 @@ class AddCardButton extends React.Component {
 
 
     render() {
-        let { message } = this.props;
         let { title } = this.state;
         if (this.state.open){
             return (
-                <Space direction="vertical" style={{width: "100%"}}>
-                    <TextArea style={{display: "block", width: "100%"}} placeholder="Enter a title for this card..." value={title} onChange={this.handleTextInput}/>
+                <Space direction="vertical" style={{width: "100%", backgroundColor: "#ebecf0"}}>
+                    <TextArea style={{display: "block", width: "100%"}} placeholder="Enter list title..." value={title} onChange={this.handleTextInput}/>
                     <Space>
-                        <Button type="primary" onClick={this.addCard}>Add Card</Button>
+                        <Button type="primary" onClick={this.addList}>Add List</Button>
                         <Button shape="circle" icon={<CloseOutlined />} onClick={this.close}/>
                     </Space>
                 </Space>
@@ -54,9 +52,9 @@ class AddCardButton extends React.Component {
         }
 
         return (
-            <Button className="card" block icon={<PlusOutlined />} onClick={this.open} >{message}</Button>
+            <Button className="card" style={{ width: 240, marginLeft: 8 }} icon={<PlusOutlined />} onClick={this.open} >Add another list</Button>
         );
     }
 };
 
-export default AddCardButton;
+export default AddListButton;

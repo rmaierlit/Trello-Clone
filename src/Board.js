@@ -1,6 +1,7 @@
 import { Breadcrumb, Space, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import CardList from "./CardList";
+import AddListButton from "./AddListButton";
 import React from 'react';
 import {v4 as makeUUID} from "uuid";
 
@@ -66,7 +67,7 @@ class Board extends React.Component {
             list: listID,
             archived: false,
         }
-        let newCards = {...this.state.cards, [uuid]: card };
+        let newCards = {...this.state.cards, [uuid]: card }; // copies the old cards and adds the new one
         this.setState({cards: newCards});
     }
 
@@ -75,9 +76,21 @@ class Board extends React.Component {
         let card = Object.assign( {}, this.state.cards[cardID]);
         card.archived = true;
         
-        let newCards = {...this.state.cards, [cardID]: card };
+        let newCards = {...this.state.cards, [cardID]: card }; // copies the old cards but updates the "archived" property of the card matching the uuid
         console.log(newCards);
         this.setState({cards: newCards});
+    }
+
+    addList = (title) => {
+        let uuid = makeUUID();
+        let list = {
+            uuid,
+            title,
+            archived: false,
+        }
+        let newLists = {...this.state.lists, [uuid]: list}; // copies the old lists and adds the new one
+        let newListOrder = [...this.state.listOrder, uuid]; // copies the old list order and adds the new one to the end
+        this.setState({lists: newLists, listOrder: newListOrder})
     }
 
     render() {
@@ -104,7 +117,7 @@ class Board extends React.Component {
                 </Breadcrumb>
                 <Space align="start">
                     {allLists}
-                    <Button className="card" style={{ width: 240, marginLeft: 8 }} icon={<PlusOutlined />}>Add another list</Button>
+                    <AddListButton addList={this.addList}/>
                 </Space>
             </>
         )

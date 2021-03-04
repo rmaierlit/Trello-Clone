@@ -30,7 +30,7 @@ function CardList({ title, data, listID, addCard, archiveCard }) {
         <List
             size="small"
             bordered
-            header={<div>{title}</div>}
+            header={<div style={{fontWeight: 600, marginLeft: 8}}>{title}</div>}
             footer={<AddCardButton message="Add another card" listID={listID} addCard={addCard} />}
             itemLayout="horizontal"
             dataSource={data}
@@ -53,7 +53,7 @@ function NoDataList({ title }) {
         <List
             size="small"
             bordered
-            header={<div>{title}</div>}
+            header={<div style={{fontWeight: 600, marginLeft: 8}}>{title}</div>}
             itemLayout="horizontal"
             dataSource={[{ title: "no data" }]}
             renderItem={item => (
