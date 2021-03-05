@@ -44,7 +44,7 @@ class AddCardButton extends React.Component {
         if (this.state.open){
             return (
                 <Space direction="vertical" style={{width: "100%"}}>
-                    <TextArea style={{display: "block", width: "100%"}} placeholder="Enter a title for this card..." value={title} onChange={this.handleTextInput}/>
+                    <TextArea autoFocus style={{display: "block", width: "100%"}} placeholder="Enter a title for this card..." value={title} onChange={this.handleTextInput}/>
                     <Space>
                         <Button type="primary" onClick={this.addCard}>Add Card</Button>
                         <Button shape="circle" icon={<CloseOutlined />} onClick={this.close}/>

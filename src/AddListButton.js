@@ -43,7 +43,7 @@ class AddListButton extends React.Component {
             return (
                 <Card size="small">
                     <Space direction="vertical" style={{ width: "100%" }}>
-                        <TextArea style={{ display: "block", width: "100%" }} placeholder="Enter list title..." value={title} onChange={this.handleTextInput} />
+                        <TextArea autoFocus style={{ display: "block", width: "100%" }} placeholder="Enter list title..." value={title} onChange={this.handleTextInput} />
                         <Space>
                             <Button type="primary" onClick={this.addList}>Add List</Button>
                             <Button shape="circle" icon={<CloseOutlined />} onClick={this.close} />
