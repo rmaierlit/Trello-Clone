@@ -1,5 +1,5 @@
-import { Breadcrumb, Space, Button } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { Row, Col, Space, Button, Avatar } from 'antd';
+import { DownOutlined, StarOutlined, TeamOutlined, BarChartOutlined } from '@ant-design/icons';
 import CardList from "./CardList";
 import AddListButton from "./AddListButton";
 import React from 'react';
@@ -128,15 +128,25 @@ class Board extends React.Component {
         )
         return (
             <>
-                <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
-                </Breadcrumb>
-                <Space align="start">
-                    {allLists}
-                    <AddListButton addList={this.addList} />
-                </Space>
+                <Row style={{ marginBottom: 16 }}>
+                    <Col span={12}>
+                        <Space align="start">
+                            <Button icon={<BarChartOutlined />}> Board <DownOutlined /> </Button>
+                            <Button> My Project </Button>
+                            <Button icon={<StarOutlined />} />
+                            <Button> My Team </Button>
+                            <Button icon={<TeamOutlined />}> Team Visible </Button>
+                            <Avatar> UU </Avatar>
+                            <Button> Invite </Button>
+                        </Space>
+                    </Col>
+                </Row>
+                <Row>
+                    <Space align="start">
+                        {allLists}
+                        <AddListButton addList={this.addList} />
+                    </Space>
+                </Row>
             </>
         )
     };

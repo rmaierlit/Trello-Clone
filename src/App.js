@@ -1,5 +1,6 @@
 import './App.css';
-import { Layout, Menu } from 'antd';
+import { Layout, Space, Button } from 'antd';
+import { AppstoreOutlined, HomeOutlined,UpSquareOutlined } from '@ant-design/icons';
 import Board from "./Board";
 
 const { Header, Content } = Layout;
@@ -9,13 +10,13 @@ function App() {
     <div className="App">
       <Layout className="layout">
         <Header>
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
-          </Menu>
+          <Space>
+            <Button size="large" icon={<AppstoreOutlined />} />
+            <Button size="large" icon={<HomeOutlined />} />
+            <Button size="large" icon={<UpSquareOutlined />}> Boards </Button>
+          </Space>
         </Header>
-        <Content style={{ padding: '0 50px' }}>
+        <Content style={{ padding: '0 8px' }}>
           <Board/>
         </Content>
       </Layout>
