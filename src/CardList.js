@@ -3,7 +3,7 @@ import { List, Button, Dropdown, Menu } from "antd";
 import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 
 import AddCardButton from "./AddCardButton";
-import CardTitle from "./CardTitle";
+import ListTitle from "./ListTitle";
 
 let menu = (handleClick) => {
     return (
@@ -47,7 +47,7 @@ function CardList({ title, data, listID, addCard, archiveCard, archiveList, edit
             size="small"
             bordered
             header={
-                <CardTitle title={title} listID={listID} archiveList={archiveList} editList={editList} />
+                <ListTitle title={title} listID={listID} archiveList={archiveList} editList={editList} />
             }
             footer={data.length? (<AddCardButton message="Add another card" listID={listID} addCard={addCard} />) : null}
             itemLayout="horizontal"

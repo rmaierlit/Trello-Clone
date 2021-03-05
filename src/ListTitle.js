@@ -2,7 +2,7 @@ import { Button, Input } from "antd";
 import { CloseOutlined } from '@ant-design/icons';
 import React, { useState } from "react";
 
-function CardTitle({ title, listID, archiveList, editList }) {
+function ListTitle({ title, listID, archiveList, editList }) {
     let [edit, setEdit] = useState(false);
     let [text, setText] = useState(title);
 
@@ -44,4 +44,4 @@ function CardTitle({ title, listID, archiveList, editList }) {
     )
 }
 
-export default CardTitle;
+export default ListTitle;

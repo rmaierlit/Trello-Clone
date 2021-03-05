@@ -4,7 +4,6 @@ import CardList from "./CardList";
 import AddListButton from "./AddListButton";
 import React from 'react';
 import { v4 as makeUUID } from "uuid";
-import { List } from 'antd/lib/form/Form';
 
 const DEFAULT_CARDS = {
     "asdf": {
