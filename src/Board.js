@@ -99,11 +99,20 @@ class Board extends React.Component {
         let list = Object.assign({}, this.state.cards[listID]);
         list.archived = true;
 
-        let newLists = { ...this.state.lists, [listID]: list }; // copies the old cards but updates the "archived" property of the card matching the uuid
+        let newLists = { ...this.state.lists, [listID]: list }; // copies the old cards but replaces the card matching the uuid with the archived version
         let newListOrder = this.state.listOrder.filter(listID => {
             return newLists[listID].archived === false
         });
         this.setState({ lists: newLists, listOrder: newListOrder })
+    }
+
+    editList = (listID, newTitle) => {
+        // copy the object so state never gets mutated directly
+        let list = Object.assign({}, this.state.cards[listID]);
+        list.title = newTitle;
+
+        let newLists = { ...this.state.lists, [listID]: list }; // copies the old cards but replaces the card matching the uuid with the new version
+        this.setState({ lists: newLists })
     }
 
     openSidebar = () => {
@@ -133,6 +142,7 @@ class Board extends React.Component {
                         addCard={this.addCard}
                         archiveCard={this.archiveCard}
                         archiveList={this.archiveList}
+                        editList={this.editList}
                     />
                 )
             }
