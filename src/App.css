@@ -1,8 +1,14 @@
 @import '~antd/dist/antd.css';
 
-.layout, .ant-layout-header {
+.layout {
   background-color: transparent;
-  padding: 0 4px;
+  height: 100vh;
+  overflow-x: auto;
+}
+
+.header {
+  background-color: transparent;
+  padding: 0px 4px;
 }
 
 .ant-list {
@@ -20,7 +26,11 @@
 }
 
 .ant-list-item {
-  border-color: lightgrey;
+  padding: 4px 8px !important;
+}
+
+.ant-list-footer, .ant-list-header {
+  padding: 4px 8px !important;
 }
 
 body {

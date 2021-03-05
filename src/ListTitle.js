@@ -30,7 +30,7 @@ function ListTitle({ title, listID, archiveList, editList }) {
 
     return (
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div style={{ fontWeight: 600, flexGrow: 1, marginLeft: 8, visibility: edit ? "hidden" : "initial" }} onClick={open}>{title}</div>
+            <div style={{ fontWeight: 600, marginTop: 4, flexGrow: 1, marginLeft: 8, visibility: edit ? "hidden" : "initial" }} onClick={open}>{title}</div>
             <Input
                 ref={inputRef}
                 style={{ position: "absolute", width: 210, zIndex: edit ? 99 : -99 }}
@@ -39,7 +39,7 @@ function ListTitle({ title, listID, archiveList, editList }) {
                 onPressEnter={update}
                 onBlur={close}
             />
-            <Button size="small" style={{ marginRight: 0 }} icon={<CloseOutlined />} onClick={() => { archiveList(listID) }} />
+            <Button size="small" style={{ marginRight: 0, marginTop: 4 }} icon={<CloseOutlined />} onClick={() => { archiveList(listID) }} />
         </div>
     )
 }

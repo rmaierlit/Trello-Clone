@@ -148,23 +148,22 @@ class Board extends React.Component {
         )
         return (
             <>
-                <Row style={{ marginBottom: 16 }} type="flex" justify="space-between">
-                    <Col span={12}>
-                        <Space>
+                <Row style={{ marginBottom: 8 }} type="flex" justify="space-between">
+                    <Col md={20} xs={24}>
+                        <Space style={{display: "flex", marginBottom: 4}} wrap>
                             <Button icon={<BarChartOutlined />}> Board <DownOutlined /> </Button>
                             <Button> My Project </Button>
                             <Button icon={<StarOutlined />} />
                             <Button> My Team </Button>
                             <Button icon={<TeamOutlined />}> Team Visible </Button>
-                            <Avatar> UU </Avatar>
+                            <Avatar style={{backgroundColor: 'darkgray'}}>UU</Avatar>
                             <Button> Invite </Button>
                         </Space>
                     </Col>
-                    <Col span={2} >
-                        <Space style={{ display: "flex", justifyContent: "flex-end" }} >
-                            <Button onClick={this.openSidebar} icon={<EllipsisOutlined />}> Show Menu </Button>
-                        </Space>
+                    <Col md={4} xs={24} style={{display: "flex", justifyContent: "flex-end"}}>
+                        <Button onClick={this.openSidebar} icon={<EllipsisOutlined />}> Show Menu </Button>
                     </Col>
+
                 </Row>
                 <Row>
                     <Space align="start">
@@ -175,6 +174,7 @@ class Board extends React.Component {
                 <Drawer
                     title={<div style={{ textAlign: "center" }} > Menu </div>}
                     placement="right"
+                    getContainer={false}
                     onClose={this.closeSidebar}
                     visible={this.state.sidebarOpen}
                     mask={false}

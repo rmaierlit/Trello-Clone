@@ -54,7 +54,7 @@ class AddCardButton extends React.Component {
         }
 
         return (
-            <Button className="card" block icon={<PlusOutlined />} onClick={this.open} >{message}</Button>
+            <Button className="card" style={{marginBottom: 4}} block icon={<PlusOutlined />} onClick={this.open} >{message}</Button>
         );
     }
 };
