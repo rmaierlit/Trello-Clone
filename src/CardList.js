@@ -32,7 +32,7 @@ function CardList({ title, data, listID, addCard, archiveCard, archiveList, edit
         // override that to display the Add Card button
         renderItem = () => (
             <List.Item>
-                <AddCardButton message="Add another card" listID={listID} addCard={addCard} />
+                <AddCardButton message="Add a card" listID={listID} addCard={addCard} />
             </List.Item>
         )
     }
