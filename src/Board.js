@@ -129,6 +129,7 @@ class Board extends React.Component {
                         title={list.title}
                         data={cardsForThisList}
                         listID={listID}
+                        key={listID}
                         addCard={this.addCard}
                         archiveCard={this.archiveCard}
                         archiveList={this.archiveList}
