@@ -1,9 +1,10 @@
-import { Row, Col, Space, Button, Avatar } from 'antd';
-import { DownOutlined, StarOutlined, TeamOutlined, BarChartOutlined } from '@ant-design/icons';
+import { Row, Col, Space, Button, Avatar, Drawer, Divider } from 'antd';
+import { DownOutlined, StarOutlined, TeamOutlined, BarChartOutlined, EllipsisOutlined } from '@ant-design/icons';
 import CardList from "./CardList";
 import AddListButton from "./AddListButton";
 import React from 'react';
 import { v4 as makeUUID } from "uuid";
+import { List } from 'antd/lib/form/Form';
 
 const DEFAULT_CARDS = {
     "asdf": {
@@ -57,6 +58,7 @@ class Board extends React.Component {
             cards: DEFAULT_CARDS,
             lists: DEFAULT_LISTS,
             listOrder: DEFAULT_LIST_ORDER,
+            sidebarOpen: false,
         }
     }
     addCard = (title, listID) => {
@@ -104,6 +106,14 @@ class Board extends React.Component {
         this.setState({ lists: newLists, listOrder: newListOrder })
     }
 
+    openSidebar = () => {
+        this.setState({ sidebarOpen: true });
+    }
+
+    closeSidebar = () => {
+        this.setState({ sidebarOpen: false });
+    }
+
     render() {
         // make an array of all cards so you can filter it by list later
         let filterableCards = Object.values(this.state.cards);
@@ -128,9 +138,9 @@ class Board extends React.Component {
         )
         return (
             <>
-                <Row style={{ marginBottom: 16 }}>
+                <Row style={{ marginBottom: 16 }} type="flex" justify="space-between">
                     <Col span={12}>
-                        <Space align="start">
+                        <Space>
                             <Button icon={<BarChartOutlined />}> Board <DownOutlined /> </Button>
                             <Button> My Project </Button>
                             <Button icon={<StarOutlined />} />
@@ -140,6 +150,11 @@ class Board extends React.Component {
                             <Button> Invite </Button>
                         </Space>
                     </Col>
+                    <Col span={2} >
+                        <Space style={{ display: "flex", justifyContent: "flex-end" }} >
+                            <Button onClick={this.openSidebar} icon={<EllipsisOutlined />}> Show Menu </Button>
+                        </Space>
+                    </Col>
                 </Row>
                 <Row>
                     <Space align="start">
@@ -147,6 +162,23 @@ class Board extends React.Component {
                         <AddListButton addList={this.addList} />
                     </Space>
                 </Row>
+                <Drawer
+                    title={<div style={{ textAlign: "center" }} > Menu </div>}
+                    placement="right"
+                    onClose={this.closeSidebar}
+                    visible={this.state.sidebarOpen}
+                    mask={false}
+                >
+                    <p> About This Board </p>
+                    <p> Change Background </p>
+                    <p> Search Cards </p>
+                    <p> Stickers </p>
+                    <p> More </p>
+                    <Divider/>
+                    <p> Butler </p>
+                    <Divider/>
+                    <p> Power-Ups</p>
+                </Drawer>
             </>
         )
     };
