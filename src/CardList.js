@@ -18,7 +18,7 @@ let menu = (handleClick) => {
 function CardList({ title, data, listID, addCard, archiveCard, archiveList, editList }) {
     let renderItem = item => (
         <List.Item>
-            <Button style={{display:"flex", justifyContent: "space-between"}} className="card" block >
+            <Button style={{display:"flex", justifyContent: "space-between", overflow: "hidden"}} className="card" block >
                 {item.title}
             <Dropdown overlay={menu(handleClick(item.uuid))}>
                 <EditOutlined style={{position: "relative", left: 8, top: 4}} />

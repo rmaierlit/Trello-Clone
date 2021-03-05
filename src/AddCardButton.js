@@ -2,8 +2,6 @@ import { Button, Input, Space } from 'antd';
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons';
 import React from 'react';
 
-const { TextArea } = Input;
-
 class AddCardButton extends React.Component {
     constructor(props) {
         super(props);
@@ -44,7 +42,14 @@ class AddCardButton extends React.Component {
         if (this.state.open){
             return (
                 <Space direction="vertical" style={{width: "100%"}}>
-                    <TextArea autoFocus style={{display: "block", width: "100%"}} placeholder="Enter a title for this card..." value={title} onChange={this.handleTextInput}/>
+                    <Input
+                        autoFocus
+                        style={{display: "block", width: "100%"}}
+                        placeholder="Enter a title for this card..."
+                        value={title}
+                        onChange={this.handleTextInput}
+                        onPressEnter={this.addCard}
+                    />
                     <Space>
                         <Button type="primary" onClick={this.addCard}>Add Card</Button>
                         <Button shape="circle" icon={<CloseOutlined />} onClick={this.close}/>
