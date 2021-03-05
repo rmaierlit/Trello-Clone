@@ -174,7 +174,6 @@ class Board extends React.Component {
                 <Drawer
                     title={<div style={{ textAlign: "center" }} > Menu </div>}
                     placement="right"
-                    getContainer={false}
                     onClose={this.closeSidebar}
                     visible={this.state.sidebarOpen}
                     mask={false}
